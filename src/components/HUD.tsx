@@ -35,7 +35,7 @@ export function HUD({ state, onReset }: Props) {
     state.status === "won" ? Trophy : state.status === "lost" ? Skull : Smile;
 
   return (
-    <div className="flex items-center justify-between gap-4 w-full max-w-3xl px-4 py-3 rounded-lg bg-card/60 backdrop-blur border border-border">
+    <div className="flex items-center justify-between gap-4 w-full max-w-3xl px-4 py-3 rounded-xl bg-card/70 backdrop-blur border border-border shadow-sm">
       <div className="flex items-center gap-2 font-mono text-lg tabular-nums">
         <Bomb className="size-5 text-muted-foreground" />
         <span className="font-bold w-10 text-left">{remaining}</span>

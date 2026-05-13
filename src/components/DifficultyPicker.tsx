@@ -14,7 +14,7 @@ const LABELS: Record<string, string> = {
 
 export function DifficultyPicker({ current, onChange }: Props) {
   return (
-    <div className="inline-flex items-center gap-1 p-1 rounded-lg bg-card/60 backdrop-blur border border-border">
+    <div className="inline-flex flex-wrap justify-center items-center gap-1 p-1 rounded-xl bg-card/70 backdrop-blur border border-border shadow-sm">
       {Object.keys(DIFFICULTIES).map((key) => {
         const cfg = DIFFICULTIES[key];
         const active = current === key;
