@@ -8,6 +8,7 @@ import { DifficultyPicker } from "@/components/DifficultyPicker";
 import { useGame } from "@/hooks/useGame";
 import type { DifficultyKey } from "@/lib/minesweeper";
 import { Button } from "@/components/ui/button";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,32 +30,17 @@ export const Route = createFileRoute("/")({
   component: GamePage,
 });
 
-const RULES = [
-  {
-    icon: MousePointerClick,
-    title: "Reveal cells",
-    body: "Left-click any hidden cell to reveal it. Your first click is always safe.",
-  },
-  {
-    icon: Hash,
-    title: "Read the numbers",
-    body: "A number shows how many mines touch that cell. Use them to deduce safe spots.",
-  },
-  {
-    icon: Flag,
-    title: "Flag the mines",
-    body: "Right-click (or long-press on touch) a cell you suspect to mark it with a flag.",
-  },
-  {
-    icon: Trophy,
-    title: "Win the round",
-    body: "Reveal every non-mine cell to win. Hit a mine and it's game over.",
-  },
-];
-
 function GamePage() {
   const [difficulty, setDifficulty] = useState<DifficultyKey>("beginner");
   const { state, reveal, flag, chord, reset } = useGame(difficulty);
+  const { t } = useI18n();
+
+  const RULES = [
+    { icon: MousePointerClick, title: t("rule.reveal.t"), body: t("rule.reveal.b") },
+    { icon: Hash, title: t("rule.numbers.t"), body: t("rule.numbers.b") },
+    { icon: Flag, title: t("rule.flag.t"), body: t("rule.flag.b") },
+    { icon: Trophy, title: t("rule.win.t"), body: t("rule.win.b") },
+  ];
 
   function handlePick(d: DifficultyKey) {
     setDifficulty(d);
@@ -63,7 +49,6 @@ function GamePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background relative overflow-hidden">
-      {/* ambient gradient backdrop */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
@@ -79,13 +64,14 @@ function GamePage() {
         <div className="flex flex-col items-center gap-3 text-center">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary ring-1 ring-primary/20">
             <Sparkles className="size-3" />
-            Modern Minesweeper · 2026
+            {t("home.badge")}
           </span>
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-            Sweep with <span className="text-primary">style</span>.
+            {t("home.title.a")}
+            <span className="text-primary">{t("home.title.b")}</span>.
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-md">
-            Click to reveal · Right-click to flag · Click a number to chord
+            {t("home.subtitle")}
           </p>
         </div>
 
@@ -100,29 +86,28 @@ function GamePage() {
             <div className="absolute inset-0 flex items-center justify-center bg-background/70 backdrop-blur-sm rounded-lg animate-in fade-in duration-300">
               <div className="text-center p-6 rounded-xl bg-card border border-border shadow-2xl">
                 <h2 className="font-display text-2xl font-bold mb-2">
-                  {state.status === "won" ? "🎉 You won!" : "💥 Boom!"}
+                  {state.status === "won" ? t("result.won") : t("result.lost")}
                 </h2>
                 <p className="text-sm text-muted-foreground mb-4">
                   {state.status === "won"
-                    ? `Cleared in ${Math.round(((state.endedAt ?? 0) - (state.startedAt ?? 0)) / 1000)}s`
-                    : "Better luck next time."}
+                    ? t("result.cleared", {
+                        s: Math.round(((state.endedAt ?? 0) - (state.startedAt ?? 0)) / 1000),
+                      })
+                    : t("result.bad")}
                 </p>
-                <Button onClick={() => reset(state.difficulty)}>Play again</Button>
+                <Button onClick={() => reset(state.difficulty)}>{t("result.again")}</Button>
               </div>
             </div>
           )}
         </div>
 
-        {/* How to play */}
         <section className="w-full mt-8 sm:mt-12">
           <div className="flex items-end justify-between mb-4 sm:mb-6">
             <div>
               <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight">
-                How to play
+                {t("home.howto")}
               </h2>
-              <p className="text-sm text-muted-foreground mt-1">
-                Four simple rules. Endless replayability.
-              </p>
+              <p className="text-sm text-muted-foreground mt-1">{t("home.howto.sub")}</p>
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
@@ -139,12 +124,8 @@ function GamePage() {
                     0{i + 1}
                   </span>
                 </div>
-                <h3 className="font-display font-semibold text-base mb-1">
-                  {r.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {r.body}
-                </p>
+                <h3 className="font-display font-semibold text-base mb-1">{r.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{r.body}</p>
               </div>
             ))}
           </div>
@@ -152,7 +133,7 @@ function GamePage() {
       </main>
 
       <footer className="text-center py-6 text-xs text-muted-foreground">
-        Your game auto-saves locally — refresh anytime.
+        {t("footer.autosave")}
       </footer>
     </div>
   );
