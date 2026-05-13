@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { NavBar } from "@/components/NavBar";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -21,42 +22,36 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
+  const { t } = useI18n();
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-background via-background to-secondary/30">
       <NavBar />
       <main className="flex-1 max-w-2xl w-full mx-auto px-4 py-12 space-y-6">
-        <h1 className="text-3xl font-bold tracking-tight">About Minesweep</h1>
-        <p className="text-muted-foreground leading-relaxed">
-          Minesweep is a modern take on the classic Minesweeper. Most online versions
-          look like Windows 95 — we wanted one that feels at home on a 2026 browser:
-          clean typography, smooth interactions, dark mode by default, and a fully
-          responsive board that scales to your screen.
-        </p>
+        <h1 className="text-3xl font-bold tracking-tight">{t("about.title")}</h1>
+        <p className="text-muted-foreground leading-relaxed">{t("about.intro")}</p>
 
         <div>
-          <h2 className="text-lg font-semibold mb-2">What's different</h2>
+          <h2 className="text-lg font-semibold mb-2">{t("about.diff.h")}</h2>
           <ul className="space-y-2 text-muted-foreground list-disc pl-5">
-            <li>First click is always safe — no more instant-loss openings.</li>
-            <li>Auto-save: refresh anytime, your in-progress game is restored.</li>
-            <li>Per-difficulty best times, win rate, and streak tracking.</li>
-            <li>Chord reveal: click a satisfied number to open its neighbors.</li>
-            <li>Light & dark themes that actually look good in both modes.</li>
+            <li>{t("about.diff.1")}</li>
+            <li>{t("about.diff.2")}</li>
+            <li>{t("about.diff.3")}</li>
+            <li>{t("about.diff.4")}</li>
+            <li>{t("about.diff.5")}</li>
           </ul>
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold mb-2">How to play</h2>
+          <h2 className="text-lg font-semibold mb-2">{t("about.howto.h")}</h2>
           <ul className="space-y-2 text-muted-foreground list-disc pl-5">
-            <li>Left-click a hidden cell to reveal it.</li>
-            <li>Right-click to flag a suspected mine.</li>
-            <li>Numbers show how many mines touch that cell.</li>
-            <li>Reveal every non-mine cell to win.</li>
+            <li>{t("about.howto.1")}</li>
+            <li>{t("about.howto.2")}</li>
+            <li>{t("about.howto.3")}</li>
+            <li>{t("about.howto.4")}</li>
           </ul>
         </div>
 
-        <p className="text-sm text-muted-foreground">
-          All progress lives in your browser's local storage. Nothing is sent to a server.
-        </p>
+        <p className="text-sm text-muted-foreground">{t("about.privacy")}</p>
       </main>
     </div>
   );

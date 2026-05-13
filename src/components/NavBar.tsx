@@ -2,21 +2,24 @@ import { useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { Bomb, Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-
-const links = [
-  { to: "/", label: "Play" },
-  { to: "/stats", label: "Stats" },
-  { to: "/about", label: "About" },
-] as const;
 
 export function NavBar() {
   const loc = useLocation();
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
+
+  const links = [
+    { to: "/", label: t("nav.play") },
+    { to: "/stats", label: t("nav.stats") },
+    { to: "/about", label: t("nav.about") },
+  ] as const;
 
   return (
     <header className="w-full border-b border-border/50 bg-background/70 backdrop-blur-xl sticky top-0 z-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 grid grid-cols-[auto_1fr_auto] items-center gap-3">
         <Link
           to="/"
           onClick={() => setOpen(false)}
@@ -28,7 +31,7 @@ export function NavBar() {
           <span>Minesweep</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center justify-center gap-1">
           {links.map((l) => {
             const active = loc.pathname === l.to;
             return (
@@ -49,12 +52,15 @@ export function NavBar() {
               </Link>
             );
           })}
-          <div className="ml-2">
-            <ThemeToggle />
-          </div>
         </nav>
 
-        <div className="flex md:hidden items-center gap-1">
+        <div className="hidden md:flex items-center gap-1 justify-end">
+          <LanguageSwitcher />
+          <ThemeToggle />
+        </div>
+
+        <div className="flex md:hidden items-center gap-1 justify-end col-start-3">
+          <LanguageSwitcher />
           <ThemeToggle />
           <button
             onClick={() => setOpen((v) => !v)}
