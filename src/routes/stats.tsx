@@ -108,12 +108,15 @@ function StatsPage() {
             ) : (
               <div className="divide-y divide-border">
                 {stats.recent.map((r, i) => (
-                  <div key={i} className="flex items-center justify-between px-4 py-2.5 text-sm">
+                  <div key={i} className="grid grid-cols-4 items-center gap-2 px-4 py-2.5 text-sm">
                     <span className="capitalize text-muted-foreground">{r.difficulty}</span>
                     <span className={r.won ? "text-emerald-500" : "text-rose-500"}>
                       {r.won ? "Won" : "Lost"}
                     </span>
-                    <span className="font-mono">{fmt(r.time)}</span>
+                    <span className="font-mono tabular-nums">{fmt(r.time)}</span>
+                    <span className="text-xs text-muted-foreground text-right tabular-nums">
+                      {fmtDate(r.at)}
+                    </span>
                   </div>
                 ))}
               </div>
