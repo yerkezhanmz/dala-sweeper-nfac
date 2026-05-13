@@ -27,11 +27,31 @@ function fmt(ms: number) {
   return `${s.toFixed(1)}s`;
 }
 
+function fmtDate(ts: number) {
+  const d = new Date(ts);
+  const now = new Date();
+  const sameDay =
+    d.getFullYear() === now.getFullYear() &&
+    d.getMonth() === now.getMonth() &&
+    d.getDate() === now.getDate();
+  const time = d.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+  if (sameDay) return `Today, ${time}`;
+  const date = d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  return `${date}, ${time}`;
+}
+
 function StatsPage() {
   const [stats, setStats] = useState<GameStats | null>(null);
 
   useEffect(() => {
     setStats(loadStats());
+    const refresh = () => setStats(loadStats());
+    window.addEventListener("focus", refresh);
+    window.addEventListener("storage", refresh);
+    return () => {
+      window.removeEventListener("focus", refresh);
+      window.removeEventListener("storage", refresh);
+    };
   }, []);
 
   if (!stats) return null;
