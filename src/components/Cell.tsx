@@ -54,11 +54,11 @@ function CellInner({ cell, r, c, size, exploded, onReveal, onFlag, onChord }: Pr
       onContextMenu={handleContext}
       style={{ width: size, height: size, fontSize: size * 0.55 }}
       className={cn(
-        "flex items-center justify-center font-bold select-none transition-all duration-100 rounded-[3px]",
-        "border border-border/40",
+        "flex items-center justify-center font-bold select-none transition-colors duration-75 rounded-[2px]",
+        "border border-border",
         !isRevealed &&
-          "bg-secondary hover:bg-accent active:scale-95 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]",
-        isRevealed && !cell.mine && "bg-background/50",
+          "bg-secondary hover:bg-accent active:scale-95 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.25)] ring-1 ring-black/10 dark:ring-white/5",
+        isRevealed && !cell.mine && "bg-background/80 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)]",
         isRevealed && cell.mine && exploded && "bg-destructive",
         isRevealed && cell.mine && !exploded && "bg-destructive/40",
         isRevealed && !cell.mine && cell.adjacent > 0 && NUMBER_COLORS[cell.adjacent],
