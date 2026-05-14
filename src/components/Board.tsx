@@ -16,9 +16,11 @@ export function Board({ state, onReveal, onFlag, onChord }: Props) {
     function compute() {
       const maxW = Math.min(window.innerWidth - 32, 1100);
       const maxH = window.innerHeight - 240;
-      const byW = Math.floor(maxW / state.cols);
-      const byH = Math.floor(maxH / state.rows);
-      setSize(Math.max(20, Math.min(40, Math.min(byW, byH))));
+      const gap = 2;
+      const padding = 16;
+      const byW = Math.floor((maxW - padding - gap * (state.cols - 1)) / state.cols);
+      const byH = Math.floor((maxH - padding - gap * (state.rows - 1)) / state.rows);
+      setSize(Math.max(12, Math.min(40, Math.min(byW, byH))));
     }
     compute();
     window.addEventListener("resize", compute);

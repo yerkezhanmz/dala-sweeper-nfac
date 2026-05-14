@@ -80,7 +80,7 @@ function GamePage() {
 
         <HUD state={state} onReset={() => reset(state.difficulty)} />
 
-        <div className="relative max-w-full overflow-x-auto">
+        <div className="relative max-w-full">
           <Board state={state} onReveal={reveal} onFlag={flag} onChord={chord} />
 
           {(state.status === "won" || state.status === "lost") && (
