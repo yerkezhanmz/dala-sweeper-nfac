@@ -9,6 +9,7 @@ import { useGame } from "@/hooks/useGame";
 import type { DifficultyKey } from "@/lib/minesweeper";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
+import heroBg from "@/assets/hero-bg.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
