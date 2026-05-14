@@ -9,6 +9,7 @@ import { useGame } from "@/hooks/useGame";
 import type { DifficultyKey } from "@/lib/minesweeper";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
+import heroBg from "@/assets/hero-bg.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,14 +50,14 @@ function GamePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(60rem 40rem at 10% -10%, color-mix(in oklab, var(--color-primary) 15%, transparent), transparent 60%), radial-gradient(50rem 35rem at 110% 10%, color-mix(in oklab, var(--color-chart-2) 12%, transparent), transparent 60%)",
-        }}
-      />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[80vh] sm:h-[90vh]">
+        <div
+          className="absolute inset-0 bg-center bg-cover"
+          style={{ backgroundImage: `url(${heroBg})` }}
+        />
+        <div className="absolute inset-0 bg-background/60 dark:bg-background/72" />
+        <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-b from-transparent to-background" />
+      </div>
 
       <NavBar />
 
@@ -114,7 +115,7 @@ function GamePage() {
             {RULES.map((r, i) => (
               <div
                 key={r.title}
-                className="group relative p-5 rounded-2xl bg-card/70 backdrop-blur border border-border hover:border-primary/40 transition-colors"
+                className="relative p-5 rounded-2xl bg-card/70 backdrop-blur border border-border"
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="size-10 grid place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20">
