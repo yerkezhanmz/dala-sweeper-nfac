@@ -115,7 +115,7 @@ function GamePage() {
             {RULES.map((r, i) => (
               <div
                 key={r.title}
-                className="group relative p-5 rounded-2xl bg-card/70 backdrop-blur border border-border hover:border-primary/40 transition-colors"
+                className="relative p-5 rounded-2xl bg-card/70 backdrop-blur border border-border"
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="size-10 grid place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20">
