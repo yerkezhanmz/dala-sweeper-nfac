@@ -50,14 +50,14 @@ function GamePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(60rem 40rem at 10% -10%, color-mix(in oklab, var(--color-primary) 15%, transparent), transparent 60%), radial-gradient(50rem 35rem at 110% 10%, color-mix(in oklab, var(--color-chart-2) 12%, transparent), transparent 60%)",
-        }}
-      />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[80vh] sm:h-[90vh]">
+        <div
+          className="absolute inset-0 bg-center bg-cover"
+          style={{ backgroundImage: `url(${heroBg})` }}
+        />
+        <div className="absolute inset-0 bg-background/60 dark:bg-background/72" />
+        <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-b from-transparent to-background" />
+      </div>
 
       <NavBar />
 
