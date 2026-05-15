@@ -13,6 +13,10 @@ export default defineConfig({
     // Only use our custom server entry for Cloudflare builds.
     // Vercel and other platforms will use the default entry.
     server: process.env.VERCEL ? undefined : { entry: "server" },
+    // Explicitly set the Nitro preset for Vercel
+    nitro: {
+      preset: process.env.VERCEL ? "vercel" : undefined,
+    },
   },
   // Disable the built-in Cloudflare plugin when building for Vercel
   cloudflare: process.env.VERCEL ? false : undefined,
