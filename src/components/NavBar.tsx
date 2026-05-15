@@ -28,7 +28,7 @@ export function NavBar() {
           <span className="grid place-items-center size-8 rounded-lg bg-primary/10 text-primary ring-1 ring-primary/20">
             <Bomb className="size-4" />
           </span>
-          <span>Minesweep</span>
+          <span>DalaSweeper</span>
         </Link>
 
         <nav className="hidden md:flex items-center justify-center gap-1">

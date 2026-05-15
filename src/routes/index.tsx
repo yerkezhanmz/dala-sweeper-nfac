@@ -49,29 +49,63 @@ function GamePage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-background relative overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[80vh] sm:h-[90vh]">
+    <div className="min-h-screen flex flex-col relative overflow-x-hidden">
+      {/* ── Background Base Layer ── */}
+      <div className="fixed inset-0 -z-20 bg-background" />
+
+      {/* ── Hero background ─────────────────────────────────────────────────
+          Covers NavBar → hero text → difficulty picker → HUD → Board.
+          Fades completely to background color before the How-to-Play cards.
+      ─────────────────────────────────────────────────────────────────── */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10"
+        style={{ height: "min(140vh, 1200px)" }}
+      >
+        {/* 1. The image */}
         <div
-          className="absolute inset-0 bg-center bg-cover"
-          style={{ backgroundImage: `url(${heroBg})` }}
+          className="absolute inset-0 bg-no-repeat bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${heroBg})`,
+            opacity: 0.9,
+          }}
         />
-        <div className="absolute inset-0 bg-background/60 dark:bg-background/72" />
-        <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-b from-transparent to-background" />
+
+        {/* 2. Darkening layer — lighter to ensure image is visible */}
+        <div className="absolute inset-0 bg-black/25 dark:bg-black/45" />
+
+        {/* 3. Subtle radial vignette */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 30%, transparent 20%, rgba(0,0,0,0.4) 100%)",
+          }}
+        />
+
+        {/* 4. Tall gradient transition */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-full"
+          style={{
+            background:
+              "linear-gradient(to bottom, transparent 40%, var(--background) 95%)",
+          }}
+        />
       </div>
 
       <NavBar />
 
       <main className="flex-1 w-full max-w-6xl mx-auto flex flex-col items-center gap-6 px-4 sm:px-6 py-8 sm:py-12">
         <div className="flex flex-col items-center gap-3 text-center">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary ring-1 ring-primary/20">
-            <Sparkles className="size-3" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-foreground text-white ring-1 ring-primary/20">
+            <Sparkles className="size-3 text-primary text-white" />
             {t("home.badge")}
           </span>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">
             {t("home.title.a")}
-            <span className="text-primary">{t("home.title.b")}</span>.
+            <span className="text-primary text-white">{t("home.title.b")}</span>.
           </h1>
-          <p className="text-sm sm:text-base text-muted-foreground max-w-md">
+          <p className="text-sm sm:text-base text-foreground max-w-md font-medium text-white">
             {t("home.subtitle")}
           </p>
         </div>
@@ -92,8 +126,8 @@ function GamePage() {
                 <p className="text-sm text-muted-foreground mb-4">
                   {state.status === "won"
                     ? t("result.cleared", {
-                        s: Math.round(((state.endedAt ?? 0) - (state.startedAt ?? 0)) / 1000),
-                      })
+                      s: Math.round(((state.endedAt ?? 0) - (state.startedAt ?? 0)) / 1000),
+                    })
                     : t("result.bad")}
                 </p>
                 <Button onClick={() => reset(state.difficulty)}>{t("result.again")}</Button>

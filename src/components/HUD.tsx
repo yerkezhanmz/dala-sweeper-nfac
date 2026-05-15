@@ -35,7 +35,7 @@ export function HUD({ state, onReset }: Props) {
     state.status === "won" ? Trophy : state.status === "lost" ? Skull : Smile;
 
   return (
-    <div className="flex items-center justify-between gap-4 w-full max-w-3xl px-4 py-3 rounded-xl bg-card/70 backdrop-blur border border-border shadow-sm">
+    <div className="grid grid-cols-3 items-center w-full max-w-3xl px-4 py-3 rounded-xl bg-card/70 backdrop-blur border border-border shadow-sm">
       <div className="flex items-center gap-2 font-mono text-lg tabular-nums">
         <Bomb className="size-5 text-muted-foreground" />
         <span className="font-bold w-10 text-left">{remaining}</span>
@@ -43,18 +43,19 @@ export function HUD({ state, onReset }: Props) {
         <span className="text-muted-foreground w-10">{state.flagsPlaced}</span>
       </div>
 
-      <Button
-        variant="secondary"
-        size="lg"
-        onClick={onReset}
-        className="rounded-full size-12 p-0"
-        aria-label="New game"
-      >
-        <FaceIcon className="size-5" />
-      </Button>
+      <div className="flex justify-center">
+        <Button
+          variant="outline"
+          size="lg"
+          onClick={onReset}
+          className="rounded-full size-12 p-0 border-border dark:border-white/30 bg-secondary/30 dark:bg-secondary/50 hover:bg-secondary/80 transition-all"
+          aria-label="New game"
+        >
+          <FaceIcon className="size-6" />
+        </Button>
+      </div>
 
-      <div className="flex items-center gap-2 font-mono text-lg tabular-nums">
-        <RotateCcw className="size-4 text-muted-foreground opacity-0" />
+      <div className="flex items-center justify-end gap-2 font-mono text-lg tabular-nums">
         <span className="font-bold w-16 text-right">{formatTime(elapsed)}</span>
       </div>
     </div>

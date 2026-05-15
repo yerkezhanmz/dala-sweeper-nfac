@@ -5,16 +5,16 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Minesweep" },
+      { title: "About — DalaSweeper" },
       {
         name: "description",
         content:
-          "About Minesweep — a modern, minimal Minesweeper for the web with smart QoL features.",
+          "About DalaSweeper — a modern, minimal, kazakh-styled Minesweeper for the web with smart QoL features.",
       },
-      { property: "og:title", content: "About — Minesweep" },
+      { property: "og:title", content: "About — DalaSweeper" },
       {
         property: "og:description",
-        content: "Why we built a modern Minesweeper and what makes it different.",
+        content: "Why we built a modern kazakh-styled DalaSweeper and what makes it different.",
       },
     ],
   }),
