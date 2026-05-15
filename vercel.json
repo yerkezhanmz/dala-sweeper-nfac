@@ -1,5 +1,13 @@
 {
-    "buildCommand": "bun run build",
-    "outputDirectory": "dist/client",
-    "framework": null
+  "version": 2,
+  "buildCommand": "bun run build",
+  "outputDirectory": "dist/client",
+  "cleanUrls": true,
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
