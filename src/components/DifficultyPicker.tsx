@@ -19,14 +19,14 @@ export function DifficultyPicker({ current, onChange }: Props) {
             key={key}
             onClick={() => onChange(key as DifficultyKey)}
             className={cn(
-              "px-4 py-2 rounded-md text-sm font-medium transition-all",
+              "px-6 py-3 rounded-lg text-base font-semibold transition-all",
               active
-                ? "bg-primary text-primary-foreground shadow-sm"
+                ? "bg-primary text-primary-foreground shadow-md scale-105"
                 : "text-muted-foreground hover:text-foreground hover:bg-accent",
             )}
           >
             <div>{t(`diff.${key}`)}</div>
-            <div className="text-[10px] opacity-70 font-mono">
+            <div className="text-xs opacity-70 font-mono">
               {cfg.rows}×{cfg.cols} · {cfg.mines}
             </div>
           </button>

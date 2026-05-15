@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ forceWhite }: { forceWhite?: boolean }) {
   const { lang, setLang } = useI18n();
   const current = LANGS.find((l) => l.code === lang) ?? LANGS[0];
 
@@ -19,11 +19,16 @@ export function LanguageSwitcher() {
         <Button
           variant="ghost"
           size="sm"
-          className="h-9 px-2 gap-1.5 font-medium"
+          className={cn(
+            "h-10 px-3 gap-2 font-semibold transition-colors",
+            forceWhite 
+              ? "text-white hover:bg-white/10 hover:text-white" 
+              : "text-muted-foreground hover:text-foreground hover:bg-accent"
+          )}
           aria-label="Change language"
         >
-          <Globe className="size-4" />
-          <span className="text-xs tabular-nums">{current.short}</span>
+          <Globe className="size-5" />
+          <span className="text-sm tabular-nums">{current.short}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-36">

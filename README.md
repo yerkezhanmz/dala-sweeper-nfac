@@ -1,10 +1,28 @@
-# Minesweep — A modern take on Minesweeper
+# DalaSweeper — A modern take on Minesweeper from Kazakhstan 🇰🇿
 
-A clean, fast, modern Minesweeper for the web. Built with React, TanStack Start, and Tailwind CSS.
+DalaSweeper 🦅
+
+Sweep with courage.
+
+We took the world's most classic logic game and gave it something it never had: a cultural identity. 
+Set against the vast Kazakh steppe - galloping horses, soaring eagles, ancient yurts, nomadic ornaments that survived centuries - every game feels like a journey, not just a puzzle.
+
+For Kazakhs - this feels like home.
+For the world - this is a window into something rare and beautiful.
+
+We didn't localize a product.
+We gave a universal game a cultural soul.
+
+The same way Japanese aesthetics turned Nintendo into a global icon - authenticity doesn't limit an audience.
+
+It creates one.
+
+---
+Built with React, TanStack Start, and Tailwind CSS. Used Higgsfield AI to generate AI images.
 
 ## What it is
 
-Most online Minesweeper sites still look like Windows 95. **Minesweep** is a 2026-era rebuild: minimal UI, dark mode by default, smooth interactions, fully responsive board, and quality-of-life features the original never had.
+Most online Minesweeper sites still look like Windows 95. **DalaSweeper** is a 2026-era rebuild: minimal UI, dark mode by default, smooth interactions, fully responsive board, and quality-of-life features the original never had.
 
 ## Who it's for
 

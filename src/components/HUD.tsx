@@ -48,10 +48,10 @@ export function HUD({ state, onReset }: Props) {
           variant="outline"
           size="lg"
           onClick={onReset}
-          className="rounded-full size-12 p-0 border-border dark:border-white/30 bg-secondary/30 dark:bg-secondary/50 hover:bg-secondary/80 transition-all"
+          className="rounded-full size-14 p-0 border-border dark:border-white/30 bg-secondary/30 dark:bg-secondary/50 hover:bg-secondary/80 transition-all shadow-md"
           aria-label="New game"
         >
-          <FaceIcon className="size-6" />
+          <FaceIcon className="size-7" />
         </Button>
       </div>
 

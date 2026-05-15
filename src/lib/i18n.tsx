@@ -5,7 +5,7 @@ export type Lang = "en" | "ru" | "kk";
 export const LANGS: { code: Lang; label: string; short: string }[] = [
   { code: "en", label: "English", short: "EN" },
   { code: "ru", label: "Русский", short: "RU" },
-  { code: "kk", label: "Қазақша", short: "KK" },
+  { code: "kk", label: "Қазақша", short: "KZ" },
 ];
 
 const LANG_KEY = "ms:lang:v1";
