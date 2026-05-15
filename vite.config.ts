@@ -10,14 +10,6 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // @cloudflare/vite-plugin builds from this — wrangler.jsonc main alone is insufficient.
 export default defineConfig({
   tanstackStart: {
-    // Only use our custom server entry for Cloudflare builds.
-    // Vercel and other platforms will use the default entry.
-    server: process.env.VERCEL ? undefined : { entry: "server" },
-    // Explicitly set the Nitro preset for Vercel
-    nitro: {
-      preset: process.env.VERCEL ? "vercel" : undefined,
-    },
+    server: { entry: "server" },
   },
-  // Disable the built-in Cloudflare plugin when building for Vercel
-  cloudflare: process.env.VERCEL ? false : undefined,
 });
